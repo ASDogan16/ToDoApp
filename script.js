@@ -10,15 +10,23 @@ const input = document.getElementById("input")
 const btn = document.querySelector("#btn")
 const liste = document.querySelector("#liste")
 
+btn.addEventListener('click', toDo)
+
+input.addEventListener('keyup', (element)=>{
+    if(element.keyCode == 13){
+        toDo()
+    }
+})
+
 
 function toDo() {
     const li = document.createElement("li")
-    li.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'bg-warning', 'px-3', 'rounded-2')
+    li.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'bg-warning', 'px-3', 'rounded-2', 'mt-2')
     console.log(li)
 
     const p = document.createElement("p")
     p.classList.add("mt-3")
-    p.innerHTML =input.ariaValueMax.trim()
+    p.innerHTML =input.value.trim()
     
     const iconDiv = document.createElement("div")
     iconDiv.setAttribute("class", "d-flex gap-3")
@@ -28,6 +36,19 @@ function toDo() {
 
     const okay = document.createElement("i")
     okay.setAttribute("class", "fa-solid fa-thumbs-up fa-beat")
-    
 
+
+    if (input.value != ""){
+        iconDiv.append(okay)
+        iconDiv.append(trash)
+        li.append(p)
+        li.append(iconDiv)
+        liste.append(li)
+
+    } else {
+        alert("Boş bırakılamaz")
+    }
+
+
+    input.value = ""
 }
