@@ -45,6 +45,30 @@ function toDo() {
         li.append(iconDiv)
         liste.append(li)
 
+        okay.addEventListener("mouseover", ()=>{
+            okay.style.color = "white"
+        })
+        okay.addEventListener("mouseout", ()=>{
+            okay.style.color = "black"
+        })
+
+        okay.addEventListener('click', function (){
+            console.log(this.parentElement.previousElementSibling)
+            console.log(this.parentElement.parentElement)
+
+            let yazi = this.parentElement.previousElementSibling
+            let parent = this.parentElement.parentElement
+
+            parent.classList.toggle("bg-warning")
+            parent.classList.toggle("bg-success")
+
+            yazi.classList.toggle('text-decoration-line-through')
+            yazi.classList.toggle('text-white')
+
+        })
+
+
+
     } else {
         alert("Boş bırakılamaz")
     }
