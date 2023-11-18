@@ -27,12 +27,13 @@ function toDo() {
     const p = document.createElement("p")
     p.classList.add("mt-3")
     p.innerHTML =input.value.trim()
+
     
     const iconDiv = document.createElement("div")
     iconDiv.setAttribute("class", "d-flex gap-3")
 
-    const trash = document.createElement("i")
-    trash.classList.add("fa-solid", "fa-trash", "fa-bounce")
+    const thrash = document.createElement("i")
+    thrash.classList.add("fa-solid", "fa-trash", "fa-bounce")
 
     const okay = document.createElement("i")
     okay.setAttribute("class", "fa-solid fa-thumbs-up fa-beat")
@@ -40,7 +41,7 @@ function toDo() {
 
     if (input.value != ""){
         iconDiv.append(okay)
-        iconDiv.append(trash)
+        iconDiv.append(thrash)
         li.append(p)
         li.append(iconDiv)
         liste.append(li)
@@ -67,6 +68,23 @@ function toDo() {
 
         })
 
+        thrash.addEventListener("mouseover", ()=>{
+            thrash.style.color = "red"
+        })
+
+        thrash.addEventListener("mouseout", ()=>{
+            thrash.style.color = "black"
+        })
+
+        thrash.addEventListener("click", function (){
+            let sil = this.parentElement.parentElement
+            sil.remove()
+            localStorage.removeItem("todo")
+        })
+
+
+        let deger = liste.innerHTML
+        localStorage.setItem("todo", JSON.stringify(deger))
 
 
     } else {
@@ -76,3 +94,15 @@ function toDo() {
 
     input.value = ""
 }
+
+
+//! git add .
+//! git commit -m "mesaj"
+//! git push
+
+
+let al = localStorage.getItem("todo")
+
+console.log(JSON.parse(al))
+
+liste.innerHTML =JSON.parse(al)
